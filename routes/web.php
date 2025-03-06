@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Auth\SocialiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserSearchController;
 use App\Http\Controllers\DashboardController;
@@ -54,5 +55,5 @@ Route::post('/posts/{post}/like', [LikeController::class, 'toggleLike'])->name('
 Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
-Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('redirect.google');
-Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+Route::get('/auth/google', [SocialiteController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
