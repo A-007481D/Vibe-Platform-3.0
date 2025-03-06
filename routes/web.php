@@ -7,6 +7,7 @@ use App\Http\Controllers\FriendshipController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\QrController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,7 +38,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/friends/requests', [FriendshipController::class, 'pendingRequests'])->name('friends.requests');
     Route::get('/friends', [FriendshipController::class, 'friendsList'])->name('friends.list');
     Route::get('/friends/{id}', [FriendshipController::class, 'show'])->name('friends.show');
-
 });
 Route::get('/posts/friendsPosts', [PostController::class, 'friendsPosts'])->name('posts.friendsPosts');
 
@@ -52,3 +52,10 @@ Route::post('/posts/{post}/like', [LikeController::class, 'toggleLike'])->name('
 
 Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+
+
+// QR Code
+Route::middleware(['auth'])->group(function () {
+    Route::get('/qrcode/generate', [QrController::class, 'generate'])->name('qrcode.generate');
+    Route::get('/invitation/accept/{token}', [QrController::class, 'accept'])->name('invitation.accept');
+});
