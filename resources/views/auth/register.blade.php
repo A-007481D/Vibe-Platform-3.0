@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="mt-6 grid grid-cols-2 gap-4">
-                    <a href="{{ route('redirect.google') }}" class="flex items-center justify-center px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-300">
+                    <a href="{{ route('auth.google') }}" class="flex items-center justify-center px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-300">
                         <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="h-5 w-5 mr-2">
                         <span class="text-sm font-medium text-gray-700">Google</span>
                     </a>
