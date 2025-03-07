@@ -4,11 +4,11 @@
         <label>
             <span class="fas fa-plus-circle"></span>
             <input disabled='disabled' type="file" class="upload-attachment" name="file" 
-                accept=".{{implode(', .',config('chatify.attachments.allowed_images'))}}, .{{implode(', .',config('chatify.attachments.allowed_files'))}}" />
+                accept=".{{implode(', .',config('chatify.attachments.allowed_images'))}}, .{{implode(', .',config('chatify.attachments.allowed_files'))}}" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
         </label>
         <button class="emoji-button"><span class="fas fa-smile"></span></button>
         
-        <button id="send-location-btn" class="btn btn-primary" 
+                                                                                                                                                                                                                                                                                                                    <button id="send-location-btn" class="btn btn-primary" 
             style="background: none; border: none; padding: 5px; display: inline-flex; align-items: center;">
             <svg fill="currentColor" height="18px" width="18px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" 
                 style="color: inherit; transition: color 0.3s;">
