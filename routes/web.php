@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Auth\SocialiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserSearchController;
 use App\Http\Controllers\DashboardController;
@@ -7,7 +9,6 @@ use App\Http\Controllers\FriendshipController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\QrController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,9 +54,12 @@ Route::post('/posts/{post}/like', [LikeController::class, 'toggleLike'])->name('
 Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
+Route::get('/auth/google', [SocialiteController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
 
-// QR Code
-Route::middleware(['auth'])->group(function () {
-    Route::get('/qrcode/generate', [QrController::class, 'generate'])->name('qrcode.generate');
-    Route::get('/invitation/accept/{token}', [QrController::class, 'accept'])->name('invitation.accept');
-});
+Route::get('/add-friend/{user}', [FriendshipController::class, 'addFriendFromQr'])->name('addFriendFromQr');
+
+
+Route::get('/addfriend', function () {
+    return "added";
+})->name('addFriendQr');
