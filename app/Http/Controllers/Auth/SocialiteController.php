@@ -30,4 +30,28 @@ class SocialiteController extends Controller
 
         return redirect('/dashboard');
     }
+
+
+    public function redirectToFacebook() 
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleFacebookCallback() 
+    {
+        $facebookUser = Socialite::driver('facebook')->user();
+        $user = User::updateOrCreate([
+            'email' => $facebookUser->getEmail(),
+            'provider_id' => 'facebook' 
+        ],
+        [
+            'name' => $facebookUser->getName(),
+            'provider_id' => $facebookUser->getId(),
+            'provider_name' => 'facebook',
+            'password' => bcrypt(uniqid()),
+        ]);
+        Auth::login($user);
+
+        return redirect('/dashboard');
+    }
 }
