@@ -39,7 +39,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/friends/requests', [FriendshipController::class, 'pendingRequests'])->name('friends.requests');
     Route::get('/friends', [FriendshipController::class, 'friendsList'])->name('friends.list');
     Route::get('/friends/{id}', [FriendshipController::class, 'show'])->name('friends.show');
-
 });
 Route::get('/posts/friendsPosts', [PostController::class, 'friendsPosts'])->name('posts.friendsPosts');
 
@@ -58,5 +57,13 @@ Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->nam
 Route::get('/auth/google', [SocialiteController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
 
+
+Route::get('/add-friend/{user}', [FriendshipController::class, 'addFriendFromQr'])->name('addFriendFromQr');
+
+Route::get('/addfriend', function () {
+    return "added";
+})->name('addFriendQr');
+
 Route::get('/auth/facebook', [SocialiteController::class, 'redirectToFacebook'])->name('auth.facebook');
 Route::get('/auth/facebook/callback', [SocialiteController::class, 'handleFacebookCallback']);
+
